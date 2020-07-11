@@ -1,7 +1,3 @@
-# 将来的には対応する規約の読込
-inherit_from:
-  - .rubocop_todo.yml
-
 # 追加した規約ファイルの読込
 require:
   - rubocop-rails
@@ -21,6 +17,12 @@ AllCops:
     - 'tmp/**/*'
     - 'config/**/*'
     - 'script/**/*'
+
+#################### Bundler ###########################
+
+# Gemfile のアルファベット順ソートを無視する
+Bundler/OrderedGems:
+  Enabled: false
 
 #################### Layout ###########################
 
@@ -100,11 +102,107 @@ Style/FrozenStringLiteralComment:
 Style/GuardClause:
   MinBodyLength: 3
 
-# Gemfile では String リテラルでの single_quotes, double_quotes の設定を除外
+# 文字列リテラルでは double_quotes を使用する
+# Gemfile, デフォルトで作成されるファイルでは String リテラルでの single_quotes, double_quotes の設定を除外
 Style/StringLiterals:
+  EnforcedStyle: double_quotes
   Exclude:
+    - 'config.ru'
     - 'Gemfile'
+    - 'Rakefile'
+    - 'app/mailers/application_mailer.rb'
+    - 'spec/rails_helper.rb'
 
 # 配列リテラルでは brackets を使用
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+#################### Added cops ###############################
+
+# https://docs.rubocop.org/rubocop/0.85/cops_layout.html#layoutemptylinesaroundattributeaccessor
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/cops_layout.html#layoutspacearoundmethodcalloperator
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_lint.html#lintdeprecatedopensslconstant
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_lint.html#lintmixedregexpcapturetypes
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_lint.html#lintraiseexception
+Lint/RaiseException:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_lint.html#lintstructnewoverride
+Lint/StructNewOverride:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_style.html#styleexponentialnotation
+Style/ExponentialNotation:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_style.html#stylehasheachmethods
+Style/HashEachMethods:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_style.html#stylehashtransformkeys
+Style/HashTransformKeys:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.86/cops_style.html#stylehashtransformvalues
+Style/HashTransformValues:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.86/cops_style.html#styleredundantfetchblock
+Style/RedundantFetchBlock:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_style.html#styleredundantregexpcharacterclass
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_style.html#styleredundantregexpescape
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop/0.85/cops_style.html#styleslicingwithrange
+Style/SlicingWithRange:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/cops_performance.html#performanceancestorsinclude
+Performance/AncestorsInclude:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/1.7/cops_performance.html#performancebigdecimalwithnumericargument
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/cops_performance.html#performanceredundantsortblock
+Performance/RedundantSortBlock:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/cops_performance.html#performanceredundantstringchars
+Performance/RedundantStringChars:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/cops_performance.html#performancereversefirst
+Performance/ReverseFirst:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/cops_performance.html#performancesortreverse
+Performance/SortReverse:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/cops_performance.html#performancesqueeze
+Performance/Squeeze:
+  Enabled: true
+
+# https://docs.rubocop.org/rubocop-performance/cops_performance.html#performancestringinclude
+Performance/StringInclude:
+  Enabled: true
