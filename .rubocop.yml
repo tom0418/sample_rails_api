@@ -7,7 +7,7 @@ require:
 AllCops:
   # Ruby バージョン指定
   TargetRubyVersion: 2.7.1
-  TergetRailsVersion: 5.2.4.3
+
   # 除外
   Exclude:
     - 'vendor/**/*' # rubocop config/default.yml
