@@ -5,8 +5,11 @@ services:
       context: ./mysql
     ports:
       - "3306:3306"
-    env_file:
-      - ./.env/db.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=passw0rd
+      - TZ=Asia/Tokyo
     volumes:
       - mysql_data:/var/lib/mysql
   api:
@@ -16,8 +19,12 @@ services:
     ports:
       - "3000:3000"
       - "1234:1234"
-    env_file:
-      - ./.env/api.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=passw0rd
+      - DB_HOST=db
+      - TZ=Asia/Tokyo
     volumes:
       - .:/sample_api:cached
       - bundle:/usr/local/bundle
